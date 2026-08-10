@@ -333,7 +333,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 <div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
-  <p>This site uses Google Analytics cookies to understand site traffic. By clicking “Accept”, you agree to this. <a href="cookie-policy.html">Cookie Policy</a></p>
+  <p>This site uses Google Analytics cookies to understand site traffic. By clicking “Accept”, you agree to this. <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Learn more</a></p>
   <div class="cookie-consent-buttons">
     <button id="cookie-consent-reject" type="button">Reject</button>
     <button id="cookie-consent-accept" type="button">Accept</button>
@@ -367,12 +367,6 @@ ul.task-list li input[type="checkbox"] {
     window.gtag("js", new Date());
     window.gtag("config", GA_ID);
   }
-
-  // Exposed so the Cookie Policy page can offer a "change your choice" control.
-  window.resetCookieConsent = function () {
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-    location.reload();
-  };
 
   var banner = document.getElementById("cookie-consent-banner");
   var consent = getConsent();
@@ -833,7 +827,7 @@ ul.task-list li input[type="checkbox"] {
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="./cookie-policy.html">
+    <a class="nav-link" href="https://policies.google.com/technologies/partner-sites">
 <p>Cookie Policy</p>
 </a>
   </li>  
