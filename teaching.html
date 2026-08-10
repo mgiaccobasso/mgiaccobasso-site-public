@@ -54,15 +54,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5537H0K85M"></script>
-
-<script type="text/javascript">
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-5537H0K85M', { 'anonymize_ip': true});
-</script>
 
 
 </head>
@@ -155,6 +146,152 @@ gtag('config', 'G-5537H0K85M', { 'anonymize_ip': true});
 
 
 </main> <!-- /main -->
+<style>
+#cookie-consent-banner {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-top: 1px solid #e2e0dc;
+  box-shadow: 0 -2px 12px rgba(38, 38, 38, 0.08);
+  padding: 0.9rem 1.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#cookie-consent-banner p {
+  margin: 0;
+  color: #262626;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  max-width: 52rem;
+  flex: 1 1 20rem;
+}
+
+#cookie-consent-banner a {
+  color: #262626;
+  text-decoration: underline;
+}
+
+.cookie-consent-buttons {
+  display: flex;
+  gap: 0.6rem;
+  flex: 0 0 auto;
+}
+
+.cookie-consent-buttons button {
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.42rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #262626;
+  background: #ffffff;
+  color: #262626;
+}
+
+.cookie-consent-buttons button:hover {
+  background: rgba(38, 38, 38, 0.06);
+}
+
+.cookie-consent-buttons button#cookie-consent-accept {
+  background: #262626;
+  color: #ffffff;
+}
+
+.cookie-consent-buttons button#cookie-consent-accept:hover {
+  background: #3a3a3a;
+}
+
+.cookie-consent-buttons button:focus-visible {
+  outline: 2px solid #262626;
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  #cookie-consent-banner {
+    justify-content: flex-start;
+  }
+}
+</style>
+
+<div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <p>This site uses cookies from Google to deliver its services and to analyze traffic. Information about your use of this site is shared with Google. By clicking “Accept”, you agree to its use of cookies. <a href="cookie-policy.html">Cookie Policy</a></p>
+  <div class="cookie-consent-buttons">
+    <button id="cookie-consent-reject" type="button">Reject</button>
+    <button id="cookie-consent-accept" type="button">Accept</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var GA_ID = "G-5537H0K85M";
+  var STORAGE_KEY = "cookie-consent";
+
+  function getConsent() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+
+  function setConsent(value) {
+    try { localStorage.setItem(STORAGE_KEY, value); } catch (e) {}
+  }
+
+  function loadGoogleAnalytics() {
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID);
+  }
+
+  // Exposed so the Cookie Policy page can offer a "change your choice" control.
+  window.resetCookieConsent = function () {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    location.reload();
+  };
+
+  var banner = document.getElementById("cookie-consent-banner");
+  var consent = getConsent();
+
+  if (consent === "accepted") {
+    loadGoogleAnalytics();
+  } else if (consent !== "rejected" && banner) {
+    banner.style.display = "flex";
+  }
+
+  var acceptBtn = document.getElementById("cookie-consent-accept");
+  var rejectBtn = document.getElementById("cookie-consent-reject");
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", function () {
+      setConsent("accepted");
+      loadGoogleAnalytics();
+      if (banner) banner.style.display = "none";
+    });
+  }
+
+  if (rejectBtn) {
+    rejectBtn.addEventListener("click", function () {
+      setConsent("rejected");
+      if (banner) banner.style.display = "none";
+    });
+  }
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {
@@ -583,6 +720,11 @@ gtag('config', 'G-5537H0K85M', { 'anonymize_ip': true});
     <li class="nav-item">
     <a class="nav-link" href="./cv.pdf">
 <p>CV (PDF)</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./cookie-policy.html">
+<p>Cookie Policy</p>
 </a>
   </li>  
 </ul>
